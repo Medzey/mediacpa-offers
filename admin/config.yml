@@ -1,0 +1,29 @@
+backend:
+  # Use the GitHub/GitLab API with Netlify's auth
+  name: git-gateway
+  branch: main # Branch to update (e.g., main, master)
+
+# This line makes *everything* work on Netlify
+local_backend: true
+
+# Where the data is stored
+media_folder: "static/img/uploads" # Folder where uploaded images go
+public_folder: "/img/uploads" # Path for the frontend to access images
+
+# Your content collections (like database tables)
+collections:
+  # Name of the collection (e.g., "offers")
+  - name: "offers"
+    label: "Offers"
+    # This creates a folder "offers" in your repo. Each offer is a .md file inside it.
+    folder: "content/offers"
+    create: true # Allow users to create new items
+    slug: "{{slug}}" # The file name, e.g., "amazon-gift-card.md"
+    fields: # The form fields you will see in the admin panel
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Payout", name: "payout", widget: "string" }
+      - { label: "Category", name: "category", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "CPAGrip Link", name: "link", widget: "string" }
+      - { label: "Featured Image", name: "image", widget: "image" }
+      - { label: "Body", name: "body", widget: "markdown" }
